@@ -60,3 +60,7 @@ class User(AbstractUser):
     @property
     def is_moderator(self):
         return self.role == MODERATOR
+
+
+class Group(models.Model):
+    ...
