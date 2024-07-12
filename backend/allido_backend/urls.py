@@ -4,6 +4,11 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('auth/registration/',
+    #     UserCreateView.as_view(),
+    #     name='registration'),
+    path('auth/',
+         include('django.contrib.auth.urls')),
     path('', include('users.urls')),
 ]
 

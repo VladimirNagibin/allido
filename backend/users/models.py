@@ -62,5 +62,5 @@ class User(AbstractUser):
         return self.role == MODERATOR
 
 
-class Group(models.Model):
+class Community(models.Model):
     ...
