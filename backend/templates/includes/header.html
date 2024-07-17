@@ -1,4 +1,109 @@
 {% load static %}
-<header>
-  <h1>ALLIDO</h1> 
-</header>    
+{# top menu #}
+
+<nav class="navbar navbar-expand-sm al-navbar-bg navbar-dark">
+  <div class="container-fluid">
+      <a href="#" class="ms-lg-5 me-2">
+          <img src="{% static 'img/logo.png' %}" alt="all i do" height="40">
+      </a>
+
+      <a href="#" class="navbar-brand me-1 fw-bolder fs-4 ">ALL I DO</a>
+
+      <button class="navbar-toggler " type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Navigation switch">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <div class="navbar-nav flex-fill d-flex flex-wrap justify-content-around mb-2 mb-lg-0 ">
+
+              <a href="#" class="al-navbar-text fw-bold  ms-2 me-1 p-2 d-none d-lg-block rounded">
+                  CINEMA
+              </a>
+              <a href="#" class="al-navbar-text fw-bold  fw-bold me-1 p-2  d-none d-lg-block rounded">
+                  PLAYS
+              </a>
+              <a href="#" class="al-navbar-text fw-bold  me-1  p-2 d-none d-lg-block rounded">
+                  BOOKS
+              </a>
+              <a href="#" class="al-navbar-text  fw-bold me-1  p-2 d-none d-lg-block rounded">
+                  PLAYS3
+              </a>
+              <a href="#" class="al-navbar-text  fw-bold me-1  p-2 d-none d-lg-block rounded">
+                  PLAYS4
+              </a>
+          </div>
+
+          <div class="nav justify-content-center justify-content-sm-end flex-sm-nowrap">
+              <a data-bs-toggle="collapse" href="#searchBar" aria-expanded="true"
+                 aria-controls="eventTypes" role="button" class="nav-link text-center al-navbar-text rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                       class="bi bi-search"
+                       viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+              </a>
+
+              {# % if is_granted('IS_AUTHENTICATED_FULLY') % #}
+              {% if app.user %}
+                  <a class="nav-link text-center al-navbar-text rounded"
+                     href="#">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                           class="bi bi-person-fill" viewBox="0 0 16 16">
+                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                      </svg>
+                  </a>
+              {% else %}
+                  <a class="nav-link text-center al-navbar-text rounded"
+                     data-bs-toggle="modal" data-bs-target="#accountModal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                           class="bi bi-person" viewBox="0 0 16 16">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                      </svg>
+                  </a>
+              {% endif %}
+
+              <div class="nav-item dropdown mb-0 me-lg-5">
+                  <a class="nav-link dropdown-toggle al-navbar-text text-center rounded" href="#"
+                     id="dropdown-language" role="button"
+                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {# { app.request.locale|locale_name(app.request.locale)|u.title } #}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right ai-li-without-marker"
+                      aria-labelledby="dropdown-language">
+                      {# cycle from parameters: app.supported_locales #}
+                      <!-- <li>
+                          <a class="dropdown-item"
+                              {# % set params = app.request.attributes.get('_route_params')|merge({_locale: 'en'}) % #}
+                              href="#">English
+                          </a>
+                      </li>
+                      <li>
+                          <a class="dropdown-item"
+                              {# % set params = app.request.attributes.get('_route_params')|merge({_locale: 'ru'}) % #}
+                              href="#">Русский
+                          </a>
+                      </li> -->
+                  </ul>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</nav>
+
+<div class="row collapse hide me-0 mt-1 mx-0 mb-1 mb-sm-0 mx-sm-3 mx-lg-5" id="searchBar">
+  <form class="d-flex" role="search">
+      <input class="form-control al-input me-2 ms-sm-1  ms-md-3  ms-lg-5" type="search"
+             placeholder="Search"
+             aria-label="Search">
+      <button class="btn al-navbar-btn me-sm-1 me-md-1 me-lg-5" type="submit">
+          'Search'
+      </button>
+  </form>
+</div>
+
+{# end top menu #}   

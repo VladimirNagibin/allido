@@ -1,0 +1,80 @@
+:root {
+  --color-primary: #393f4d; /*primary-color*/
+  --color-primary-next: #42434d; /*primary-light-color*/
+  --color-primary-font: #ffffff; /*primary-color-font*/
+  --color-back-main: #d4d4dc; /*back-dark*/
+  --color-back-next: #1d1e22; /*back-light*/
+  --color-attantoin: #FFEE18; /*attention*/
+}
+
+html,body{
+    height:100%;
+}
+
+body {
+    background-color: var(--color-back-main);
+}
+
+.al-bg-main { /*al-bg-dark*/
+    background-color: var(--color-back-main);
+}
+  
+.al-bg-next { /*al-bg*/
+  background-color: var(--color-back-next);
+}
+  
+.al-bg-prev { /*al-bg-light*/
+  background-color: var(--color-primary-font);
+}  
+
+/* navbar */
+.al-navbar-bg {
+    background-color: var(--color-primary);
+}
+.al-navbar-text { /*1*/
+  color: var(--color-primary-font);
+  text-decoration: none;
+}
+.al-navbar-text:hover { /*2*/
+  color: var(--color-back-main);
+  background-color: var(--color-primary-next);
+}
+.al-navbar-text:visited {
+  color: var(--color-back-main);
+  background-color: var(--color-primary-next);
+}
+.al-a-text { /*1*/
+  color: var(--color-primary-font);
+  text-decoration: none;
+}
+.al-a-text:hover { /*2*/
+  color: var(--color-back-main);
+  background-color: var(--color-primary-next);
+}
+.al-h-text {
+  color: var(--color-primary-next);
+  text-decoration: none;
+}
+.al-h-text:hover {
+  color: var(--color-primary-next);
+  /*//background-color: $primary-light-color;*/
+}
+.nav {
+  --bs-nav-link-hover-color: var(--color-primary-font);
+}
+.al-navbar-btn {
+  /*box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);*/
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  rgba(93,37,26,.3);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(93,37,26,.3);
+  color: var(--color-primary);
+  background-color: var(--color-primary-font);
+  --bs-btn-hover-bg: var(--color-back-main);
+  --bs-btn-hover-color: black; /*#{$primary-light-color}*/
+  --bs-btn-active-bg:  var(--color-primary-font);
+  --bs-btn-active-border-color:  var(--color-primary-font);
+  --bs-btn-active-color:  var(--color-primary);
+  --bs-btn-focus-bg:  var(--color-primary);
+  --bs-btn-focus-border-color:  var(--color-primary-font);
+  --bs-btn-focus-color:  var(--color-primary-font);
+}
+/* end */
