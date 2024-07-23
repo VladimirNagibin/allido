@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+  Наши правила
+{% endblock %}
+{% block content %}
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width: 40rem;">
+      <div class="card-header">
+        Правила сайта
+      </div>
+      <div class="card-body">
+        <p>
+          <b>First.</b> {% lorem b random %}
+        </p>
+        <p>
+          <b>Second.</b> {% lorem b random %}
+        </p>
+        <p>
+          <b>Third.</b> {% lorem b random %}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

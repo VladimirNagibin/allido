@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'events.apps.EventsConfig',
     'debug_toolbar',
     'django_bootstrap5',
 ]
