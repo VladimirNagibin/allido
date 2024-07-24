@@ -10,6 +10,10 @@ class Rules(TemplateView):
     template_name = 'pages/rules.html'
 
 
+class Homepage(TemplateView):
+    template_name = 'pages/index.html'
+
+
 def page_not_found(request, exception):
     return render(request, 'pages/404.html', status=404)
 

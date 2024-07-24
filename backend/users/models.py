@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.text import slugify
 
 from .constants import (ADMIN, CLOSE, MAX_ROLE_LENGTH,
                         MAX_VISIBILITY_IN_GROUP_LENGTH, MAX_VISIBILITY_LENGTH,
@@ -52,6 +53,10 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.username)
+        super(User, self).save(*args, **kwargs)
 
     @property
     def is_admin(self):
