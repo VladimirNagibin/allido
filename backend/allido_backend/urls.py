@@ -12,6 +12,7 @@ urlpatterns = [
     path('auth/',
          include('django.contrib.auth.urls')),
     path('', include('pages.urls', namespace='pages')),
+    path('users/', include('users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:

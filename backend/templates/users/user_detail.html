@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width: 40rem;">
+      <div class="card-header">
+         пользователя
+      </div>
+      <div class="card-body">
+        {{ user.username }}
+      </div>
+      <div class="modal-footer p-2 p-sm-3">
+
+      </div>      
+    </div>
+  </div>
+{% endblock %}
