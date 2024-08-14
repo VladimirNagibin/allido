@@ -118,3 +118,7 @@ INTERNAL_IPS = [
 ]
 
 DEFAULT_FROM_EMAIL = 'allido.help@gmail.com'
+
+LOGIN_REDIRECT_URL = 'users:edit_profile'
+
+LOGIN_URL = 'login'
