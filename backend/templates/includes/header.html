@@ -30,7 +30,7 @@
 
               {% if user.is_authenticated %}
                   <a class="nav-link text-center al-navbar-text rounded"
-                     href="{% url 'users:edit_profile' %}">
+                     href="{% url 'users:profile' username=user.username %}">
                     {% include "includes/svg/svg_person_fill.html" %} 
                   </a>
               {% else %}

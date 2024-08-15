@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+  Страница пользователя {{ object.username }}
+{% endblock %}
+{% block content %}
+  <h1 class="mb-5 text-center ">Страница пользователя {{ object.username }}</h1>
+  {% if object.image %}
+          <a href="{{ object.image.url }}" target="_blank">
+            <img class="border-3 rounded img-fluid img-thumbnail mb-2 mx-auto d-block" src="{{ object.image.url }}">
+          </a>
+        {% endif %}
+  <small>
+    <ul class="list-group list-group-horizontal justify-content-center mb-3">
+      <li class="list-group-item text-muted">Имя пользователя: {% if object.first_name %}{{ object.first_name }}{% else %}не указано{% endif %}</li>
+      <li class="list-group-item text-muted">Регистрация: {{ object.date_joined }}</li>
+      <li class="list-group-item text-muted">Роль: {{ object.role }}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal justify-content-center">
+      {% if user.is_authenticated and request.user == object %}
+      <a class="btn btn-sm text-muted" href="{% url 'users:edit_profile' %}">Редактировать профиль</a>
+      <a class="btn btn-sm text-muted" href="{% url 'password_change' %}">Изменить пароль</a>
+      <a class="btn btn-sm text-muted" href="{% url 'logout' %}">Выйти</a>
+      {% endif %}
+    </ul>
+  </small>
+{% endblock %}
