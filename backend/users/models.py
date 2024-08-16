@@ -31,20 +31,25 @@ class User(AbstractUser):
         default=ONLY_LOGIN,
         verbose_name='Видимость в группе',
     )
-    image = models.ImageField('Картинка', upload_to='users_images', blank=True)
+    height_field = models.PositiveIntegerField()
+    image = models.ImageField('Картинка',
+                              upload_to='users_images',
+                              height_field='height_field',
+                              blank=True)
+
     avatar = models.ImageField(
         'Аватарка',
         upload_to='users_images',
         blank=True,
     )
-    slug = models.SlugField(
-        'Идентификатор',
-        unique=True,
-        help_text=(
-            'Идентификатор страницы для URL; '
-            'разрешены символы латиницы, цифры, дефис и подчёркивание.'
-        ),
-    )
+    # slug = models.SlugField(
+    #    'Идентификатор',
+    #    unique=True,
+    #    help_text=(
+    #        'Идентификатор страницы для URL; '
+    #        'разрешены символы латиницы, цифры, дефис и подчёркивание.'
+    #    ),
+    # )
 
     class Meta:
         verbose_name = 'пользователь'
@@ -54,9 +59,9 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.username)
-        super(User, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #    self.slug = slugify(self.username)
+    #    super(User, self).save(*args, **kwargs)
 
     @property
     def is_admin(self):

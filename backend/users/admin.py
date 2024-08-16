@@ -16,6 +16,6 @@ class UserAdmin(BaseUserAdmin):
         'last_name',
         'email',
         'is_staff',
-        'slug',
+        # 'slug',
     )
-    list_editable = ('first_name', 'last_name', 'email', 'slug')
+    list_editable = ('first_name', 'last_name', 'email')
