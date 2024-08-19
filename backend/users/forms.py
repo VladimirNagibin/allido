@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-import pprint
+# import pprint
 
 User = get_user_model()
 
@@ -22,10 +22,10 @@ class ProfileForm(forms.ModelForm):
 
     def clean_image(self):
         image = self.cleaned_data.get('image', False)
-        print(dir(image))
+        # print(dir(image))
         if image:
             if image.size > 1 * 1024 * 1024:
                 raise ValidationError("Размер файла слишком большой ( > 4мб )")
-            return image
-        else:
-            raise ValidationError("Не возможно прочитать файл")
+        # else:
+        #    raise ValidationError("Не возможно прочитать файл")
+        return image

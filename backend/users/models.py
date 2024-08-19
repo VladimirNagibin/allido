@@ -31,7 +31,7 @@ class User(AbstractUser):
         default=ONLY_LOGIN,
         verbose_name='Видимость в группе',
     )
-    height_field = models.PositiveIntegerField()
+    height_field = models.PositiveIntegerField(default=0)
     image = models.ImageField('Картинка',
                               upload_to='users_images',
                               height_field='height_field',
