@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1 localhost').split(' ')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1 localhost 176.123.161.27').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -121,7 +121,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-LOGIN_REDIRECT_URL = 'users:edit_profile'
+LOGIN_REDIRECT_URL = 'pages:index'
 
 LOGIN_URL = 'login'
 
