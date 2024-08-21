@@ -1,0 +1,38 @@
+# version: '3'
+
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  db:
+    image: postgres:13
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  backend:
+    image: vlnag/allido
+    env_file: .env
+    command: gunicorn allido_backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static:/static
+      - media:/app/media
+    depends_on:
+      - db
+#  frontend:
+#    image: vlnag/foodgram_frontend
+#    command: cp -r /app/build/. /static/
+#    volumes:
+#      - static:/static
+  gateway:
+    image: vlnag/allido_gateway
+    env_file: .env
+    ports:
+      - 8080:80
+    volumes:
+      - static:/static
+      - media:/media
+    depends_on:
+      - backend
+#      - frontend
