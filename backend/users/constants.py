@@ -23,3 +23,4 @@ MAX_VISIBILITY_LENGTH = max([len(visibl) for visibl, _ in VISIBILITY_CHOICES])
 MAX_VISIBILITY_IN_GROUP_LENGTH = max(
     [len(visibl) for visibl, _ in VISIBILITY_IN_GROUP_CHOICES]
 )
+NAME_MAX_LENGHT = 150

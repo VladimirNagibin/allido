@@ -10,7 +10,7 @@ from .forms import RegistrationForm, ProfileForm
 class UserCreateView(CreateView):
     form_class = RegistrationForm
     template_name = 'registration/registration_form.html'
-    success_url = reverse_lazy('users:edit_profile')
+    success_url = reverse_lazy('pages:index')
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):

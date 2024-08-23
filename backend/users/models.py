@@ -2,28 +2,19 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.text import slugify
 
-from .constants import (ADMIN, CLOSE, MAX_ROLE_LENGTH,
-                        MAX_VISIBILITY_IN_GROUP_LENGTH, MAX_VISIBILITY_LENGTH,
-                        MODERATOR, ONLY_LOGIN, ROLE_CHOICES,
-                        VISIBILITY_IN_GROUP_CHOICES, VISIBILITY_CHOICES, USER)
+from .constants import (ADMIN, MAX_ROLE_LENGTH,
+                        MAX_VISIBILITY_IN_GROUP_LENGTH,
+                        MODERATOR, ONLY_LOGIN, ROLE_CHOICES, NAME_MAX_LENGHT,
+                        VISIBILITY_IN_GROUP_CHOICES, USER)
+from core.models import ImageAvatarModel, VisibilityDescriptionModel
 
 
-class User(AbstractUser):
-    description = models.TextField(
-        blank=True,
-        verbose_name='Обо мне'
-    )
+class User(AbstractUser, ImageAvatarModel, VisibilityDescriptionModel):
     role = models.CharField(
         max_length=MAX_ROLE_LENGTH,
         choices=ROLE_CHOICES,
         default=USER,
         verbose_name='Роль',
-    )
-    visibility = models.CharField(
-        max_length=MAX_VISIBILITY_LENGTH,
-        choices=VISIBILITY_CHOICES,
-        default=CLOSE,
-        verbose_name='Видимость',
     )
     visibility_in_group = models.CharField(
         max_length=MAX_VISIBILITY_IN_GROUP_LENGTH,
@@ -31,25 +22,6 @@ class User(AbstractUser):
         default=ONLY_LOGIN,
         verbose_name='Видимость в группе',
     )
-    height_field = models.PositiveIntegerField(default=0)
-    image = models.ImageField('Картинка',
-                              upload_to='users_images',
-                              height_field='height_field',
-                              blank=True)
-
-    avatar = models.ImageField(
-        'Аватарка',
-        upload_to='users_images',
-        blank=True,
-    )
-    # slug = models.SlugField(
-    #    'Идентификатор',
-    #    unique=True,
-    #    help_text=(
-    #        'Идентификатор страницы для URL; '
-    #        'разрешены символы латиницы, цифры, дефис и подчёркивание.'
-    #    ),
-    # )
 
     class Meta:
         verbose_name = 'пользователь'
@@ -58,10 +30,6 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-
-    # def save(self, *args, **kwargs):
-    #    self.slug = slugify(self.username)
-    #    super(User, self).save(*args, **kwargs)
 
     @property
     def is_admin(self):
@@ -72,5 +40,31 @@ class User(AbstractUser):
         return self.role == MODERATOR
 
 
-class Community(models.Model):
-    ...
+class Community(ImageAvatarModel, VisibilityDescriptionModel):
+    name = models.CharField(
+        'Название',
+        max_length=NAME_MAX_LENGHT,
+    )
+    slug = models.SlugField(
+        'Идентификатор',
+        unique=True,
+        help_text=(
+            'Идентификатор страницы для URL; '
+            'разрешены символы латиницы, цифры, дефис и подчёркивание.'
+        ),
+    )
+    date_created = models.DateTimeField(
+        'Дата добавления', auto_now_add=True, db_index=True
+    )
+
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'Пользователи'
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(User, self).save(*args, **kwargs)
