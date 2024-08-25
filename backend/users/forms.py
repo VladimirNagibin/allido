@@ -1,8 +1,12 @@
+from typing import Any
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 # import pprint
+
+from .constants import (HEIGHT_IMAGE_MAX_VALUE, IMAGE_MAX_VALUE,
+                        WIDTH_IMAGE_MAX_VALUE)
 
 User = get_user_model()
 
@@ -22,10 +26,21 @@ class ProfileForm(forms.ModelForm):
 
     def clean_image(self):
         image = self.cleaned_data.get('image', False)
-        # print(dir(image))
         if image:
-            if image.size > 1 * 1024 * 1024:
-                raise ValidationError("Размер файла слишком большой ( > 4мб )")
-        # else:
-        #    raise ValidationError("Не возможно прочитать файл")
+            if image.size > IMAGE_MAX_VALUE:
+                raise ValidationError("Размер файла слишком большой")
         return image
+
+    def clean_height_image(self):
+        height_image = self.cleaned_data.get('height_image', False)
+        if height_image:
+            if height_image > HEIGHT_IMAGE_MAX_VALUE:
+                raise ValidationError("Высота файла слишком большая")
+        return height_image
+
+    def clean_width_image(self):
+        width_image = self.cleaned_data.get('width_image', False)
+        if width_image:
+            if width_image > WIDTH_IMAGE_MAX_VALUE:
+                raise ValidationError("Ширина файла слишком большая")
+        return width_image
