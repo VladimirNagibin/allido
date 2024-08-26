@@ -38,3 +38,9 @@ class UserDetailView(DetailView):
             User,
             username=self.kwargs['username'],
         )
+
+
+class CommunityCreateView(CreateView):
+    form_class = RegistrationForm
+    template_name = 'registration/registration_form.html'
+    success_url = reverse_lazy('pages:index')
