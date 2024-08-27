@@ -68,4 +68,3 @@ class Community(ImageAvatarModel, VisibilityDescriptionModel):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(User, self).save(*args, **kwargs)
-
